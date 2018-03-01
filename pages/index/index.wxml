@@ -1,0 +1,70 @@
+<import src="../../wxParse/wxParse.wxml" />
+<view class="parent" >
+    <view class="search_box">
+        <view class="search">
+            <form bindsubmit="search">
+                <button form-type='submit' class="search_btn">
+                    <image src="/img/search.png"></image>
+                </button>
+                <input type="text" name="search_val" placeholder='搜索' placeholder-style="font-size:20rpx;line-height:58rpx;"  bindconfirm="search_act" confirm-type="search"/>
+            </form>
+        </view>
+    </view>
+    <!--内容区  -->
+    <!--banner  -->
+    <view class="banner">
+        <swiper autoplay="true" interval="4000" duration="1000" circular="true" next-margin="30px" previous-margin="22px">
+            <block wx:for="{{banner_arr}}">
+                <swiper-item>
+                    <image src="{{item.carousel_img}}" class="slide-image" mode="aspectFill" />
+                </swiper-item>
+            </block>
+        </swiper>
+    </view>
+    <view class="content">
+        <!--list  -->
+        <view class="list_wrap">
+            <text class="title">活动</text>
+            <view class="list" wx:if="{{act_data.length}}">
+                <view class="item" bindtap='tab_actdetails' data-id="{{item.id}}" wx:for="{{act_data}}">
+                    <view class="top">
+                        <text class="item_title">{{item.activity_title}}</text>
+                        <text class="subtitle">{{item.activity_dec}}</text>
+                    </view>
+                    <view class="pro_img">
+                        <image src="{{item.activity_img}}" mode="aspectFill"></image>
+                        <text class="tip">{{item.time}}</text>
+                    </view>
+                    <view class="foot">
+                        <view class="left">
+                            <image class="img" src="{{item.publish_user_img}}"></image>
+                            <text class="activity_title">{{item.publish_user_nickname}}</text>
+                            <text class="distance">{{item.distance}}</text>
+                        </view>
+                        <view class="right">
+                            <view class="num">报名人数:
+                                <template is="wxParse" data="{{wxParseData:replyTemArray[index]}}" />
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="list" wx:else>
+                <view class="item">
+                    <view class="broadcast">
+                        <image src="/img/broadcast1.png"></image>
+                    </view>
+                    <text class="tip_msg">{{tip_msg}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+
+<!-- <view class="bg_color"></view>   -->
+
+<!--提示弹框  -->
+<view class="toust_mark" wx:if="{{showToast}}">
+     <image src="/img/tip.png"></image>
+     <text>正在寻找你附近的活动，请稍后~</text>
+</view>

@@ -1,0 +1,128 @@
+
+
+@import '/pages/index/index.wxss';
+
+.parent{
+    padding-bottom:30rpx;
+}
+
+page{
+    min-height:100%;
+    background:#f9f9f9;
+}
+.list .item {
+    background:#fff;
+}
+.broadcast_area{
+    position:relative;
+    padding:22rpx 0 74rpx 60rpx;
+}
+.broadcast_area .bg_img{
+    display:block;
+    width:100%;
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    height:auto;
+}
+.publish_status{
+    position:relative;
+    display:block;
+    font:48rpx/116rpx '微软雅黑';
+    color:#000;
+    font-weight:bold;
+}
+.publish_inf{
+    position:relative;
+}
+.publish_inf view , .publish_inf view text ,  .publish_inf text{
+    display:block;
+    font:26rpx/42rpx '微软雅黑';
+    color:#2d2c26;
+}
+.publish_inf .color{
+    display:inline-block;
+    color:#2a91d6;
+}
+
+.list .item .pro_img .num{
+    font:26rpx/44rpx '微软雅黑';
+    color:#fff;
+    position:absolute;
+    right:16rpx;
+    bottom:14rpx;
+}
+.list .item .pro_img .num view{
+    display:inline-block;
+}
+.list .item .pro_img .num text {
+    font:28rpx/44rpx '微软雅黑';
+    color:#fefefe;
+    font-weight:bold;
+}
+.list .item .foot .right{
+    display:block;
+    line-height:72rpx;
+    text-align:right;
+}
+.list .item .foot .right .invatation{
+    display:inline-block;
+    height:48rpx;
+    line-height:48rpx;
+    font:22rpx/48rpx '微软雅黑';
+    color:#1c1726;
+    text-align:center;
+    padding:0 20rpx;
+    border-radius:20rpx;
+    background:#fed612;
+}
+.list .top .color{
+    color:#ff5d5d;
+}
+.list .top .color view , .list .top .item_title view , .list .top .subtitle view{
+    display:inline-block;
+}
+.list .item .foot .right .num view{
+     display:inline-block;
+}
+.list .top .subtitle view{
+   display:inline-block;
+   font:24rpx/40rpx '微软雅黑';
+}
+.invite_friend{
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+}
+.invite_friend button{
+    width:100%;
+    margin:0 auto;
+    font:30rpx/100rpx '微软雅黑';
+    color:#2a2a2a;
+    text-align:center;
+    background:#fed612;
+    /* border-radius:50rpx; */
+}
+.invite_friend button::after{
+    border:none;
+}
+
+
+.list .item .broadcast{
+    padding:118rpx 0 46rpx;
+}
+.list .item .broadcast image{
+    display:block;
+    width:221rpx;
+    height:186rpx;
+    margin:0 auto;
+}
+.list .item .tip_msg{
+    display:block;
+    text-align:center;
+    font:26rpx/40rpx '微软雅黑';
+    color:#7e7e7e;
+    padding-bottom:72rpx;
+}

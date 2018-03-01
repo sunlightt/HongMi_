@@ -1,0 +1,2 @@
+<canvas canvas-id="myCanvas" style="display:block;border: 1px solid;width:100%;box-sizing:border-box;height:900rpx;margin:0 auto;"/>
+<button bindtap='save_img' class="save">保存到手机</button>

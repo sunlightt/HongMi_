@@ -1,0 +1,175 @@
+<import src="../../wxParse/wxParse.wxml" />
+
+<view class="parent">
+    <view class="top">
+        <view class="head">
+            <view class="left">
+                <image src="{{user_inf.head_img}}"></image>
+                <text class="name">{{user_inf.nickname}}</text>
+            </view>
+            <view class="right">
+                <button class="feedback" open-type='contact'>
+                    <image src="/img/tell.png"></image>
+                    <text>意见反馈</text>
+                </button>
+            </view>
+        </view>
+        <!--tab  -->
+        <view class="tab_view">
+            <view class="{{tab_style[0]}}" bindtap='tab_section' data-index="0">个人名片</view>
+            <view class="{{tab_style[1]}}" bindtap='tab_section' data-index="1">发布的活动</view>
+            <form bindsubmit='get_formid' report-submit="{{get_formid}}">
+                <input type="text" name="index" value="2" hidden></input>
+                <view class="{{tab_style[2]}}">参与的活动
+                    <button form-type='submit'></button>
+                </view>
+            </form>
+            <view class="tip" wx:if="{{user_inf.is_complete==2}}">完善信息能够提高你组队成功率</view> 
+        </view>
+    </view>
+    <!--内容区  -->
+    <view class="content">
+        <!--个人信息  -->
+        <view class="section option1" wx:if="{{tab_index==0}}">
+            <!-- <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号</button> -->
+            <form bindsubmit="formSubmit">
+                <label class="item_form item_inf">
+                    <text class="inf">姓名</text>
+                    <input type="text" name="username" maxlength='8' placeholder="请输入姓名" value='{{user_inf.name=="null" ? "请输入姓名" : user_inf.name }}'></input>
+                </label>
+                <!-- <label class="item_form">
+                    <text class="inf">自我介绍</text>
+                    <input type="text" name="introduce" placeholder="一句话介绍你自己吧" value='{{user_inf.name}}'></input>
+                </label> -->
+                <label class="item_form item_inf">
+                    <text class="inf">公司</text>
+                    <input type="text" name="company"  maxlength='8' placeholder="请输入公司或单位名称" value="{{user_inf.company=='null' ? '请输入公司或单位名称' : user_inf.company}}"></input>
+                </label>
+                <label class="item_form item_inf">
+                    <text class="inf">学校</text>
+                    <input type="text" name="school"  placeholder="请选择学校" value="{{user_inf.school=='null' ? '请输入学校' : user_inf.school}}"></input>
+                </label>
+                <label class="item_form item_inf">
+                    <text class="inf">职位</text>
+                    <input type="text" name="wrok"  maxlength='8' placeholder="请输入职位" value="{{user_inf.vocation=='null' ? '请输入职位' : user_inf.vocation}}"></input>
+                </label>
+                <label class="item_form item_inf">
+                    <text class="inf">微信<text class="tip" style="display:none;">(仅队友可见)</text></text>
+                    <input type="text" name="weixin" placeholder="请输入微信号" value="{{user_inf.wx_num=='null' ? '请输入微信号' : user_inf.wx_num}}"></input>
+                </label>
+                <label class="item_form item_inf test_number">
+                    <text class="inf">手机号<text class="tip" style="display:none;">(仅队友可见)</text></text>
+                    <input type="text" name="number" placeholder="请输入手机号" disabled="true" value="{{user_inf.mobile=='null' ? '请输入手机号' : user_inf.mobile}}"></input>
+                    <button class="test" open-type='getPhoneNumber' catchgetphonenumber='getPhoneNumber'>手机认证</button>
+                </label>
+                <view class="item_form input_area">
+                    <text class="title_inf">资源</text>
+                    <view class="msg_area">
+                        <textarea placeholder='请说明拥有的资源' maxlength='70' name="resource" value="{{user_inf.resource=='null' ? '请说明拥有的资源' : user_inf.resource}}" auto-height="true"></textarea>
+                    </view>
+                </view>
+                <view class="item_form input_area">
+                    <text class="title_inf">需求</text>
+                    <view class="msg_area">
+                        <textarea placeholder='请说明自己的需求' maxlength='70'  name="need" value="{{user_inf.need=='null' ? '请说明自己的需求' : user_inf.need}}" auto-height="true"></textarea>
+                    </view>
+                </view>
+                <!-- <button class="save saved" wx:if="{{save_status}}">已保存</button> -->
+                <button class="save save_status" form-type='submit'>保存</button>
+            </form>
+        </view>
+        <!--发布的活动  -->
+        <view class="section option2" wx:if="{{tab_index==1}}">
+            <view class="list_wrap">
+                <view class="list" wx:if="{{publish_data.length>0}}">
+                    <view class="item" bindtap='tab_actdetails' data-id="{{item.id}}"  data-status="{{item.is_status}}" wx:for="{{publish_data}}">
+                        <view class="top">
+                            <view class="top_content">
+                                <text class="item_title">{{item.activity_title}}</text>
+                                <text class="same" catchtap='same_activity' data-invi_openid="{{item.user_openid}}" data-id="{{item.id}}">相似活动 ></text>
+                            </view>
+                            <text class="subtitle">{{item.activity_dec}}</text>
+                        </view>
+                        <view class="pro_img">
+                            <image src="{{item.activity_img}}" mode="aspectFill"></image>
+                            <text class="act_status" wx:if="{{item.is_status!=1}}">活动已结束</text>
+                            <!-- <text class="tip">1小时前发布</text> -->
+                        </view>
+                        <view class="foot">
+                            <text class="date">截止日期:{{item.end_time}}</text>
+                            <view class="member_num">报名人数:
+                                <template is="wxParse" data="{{wxParseData:replyTemArray[index]}}" /> </view>
+                        </view>
+                        <view class="bnt_area">
+                            <text class="examine" data-pblish_openid="{{item.user_openid}}" data-id="{{item.id}}" data-status="{{item.wait_apply_num}}" data-act_status="{{item.is_status}}" catchtap='examine'>报名审核<text class="tip" wx:if="{{item.wait_apply_num>0}}">{{item.wait_apply_num}}</text> </text> 
+                            <text class="activity" catchtap='change_activity' data-id="{{item.id}}" data-pblish_openid="{{item.user_openid}}" data-act_status="{{item.is_status}}">变更活动</text>
+                        </view>
+                    </view>
+                </view>
+                <view class="list" wx:else>
+                    <view class="item">
+                        <view class="broadcast">
+                            <image src="/img/broadcast1.png"></image>
+                        </view>
+                        <text class="tip_msg">还没有发布任何活动\n赶快去发布吧！</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <!--参与的活动  -->
+        <view class="section option3" wx:if="{{tab_index==2}}">
+            <view class="list_wrap">
+                <view class="list" wx:if="{{join_data.length>0}}">
+                    <view class="item" bindtap='tab_actdetails' data-id="{{item.id}}"  data-status="{{item.is_status}}" wx:for="{{join_data}}">
+                        <view class="top">
+                            <!-- <text class="item_title">{{item.activity_title}}</text>
+                            <text class="subtitle">{{item.activity_dec}}</text> -->
+                            <view class="top_content">
+                                <text class="item_title">{{item.activity_title}}</text>
+                                <view class="same">
+                                     <view class="same_box">
+                                          <image src='/img/pass.png' wx:if="{{item.check_status==1}}"></image>
+                                          <image src="/img/wait.png" wx:else></image>
+                                          <text class="same_text" wx:if="{{item.check_status==1}}">审核通过</text>
+                                          <text class="same_text" wx:if="{{item.check_status==2}}">等待审核</text>
+                                          <text class="same_text" wx:if="{{item.check_status==3}}">审核未通过</text>
+                                     </view>
+                                </view>
+                            </view>
+                            <text class="subtitle">{{item.activity_dec}}</text>  
+                        </view>
+                        <view class="pro_img">
+                            <image src="{{item.activity_img}}" mode="aspectFill"></image>
+                            <text class="act_status" wx:if="{{item.is_status!=1}}">活动已结束</text>
+                            <text class="tip">{{item.time}}</text>
+                        </view>
+                        <view class="foot">
+                            <view class="left">
+                                <image class="img" src="{{item.publish_user_img}}"></image>
+                                <text class="activity_title">{{item.publish_user_nickname}}</text>
+                                <text class="distance">{{item.distance}}</text>
+                            </view>
+                            <view class="right">
+                                <view class="member_num">报名人数:
+                                    <template is="wxParse" data="{{wxParseData:replyTemArray1[index]}}" /> </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="list" wx:else>
+                    <view class="item">
+                        <view class="broadcast">
+                            <image src="/img/broadcast1.png"></image>
+                        </view>
+                        <text class="tip_msg">还没有参加任何活动\n赶快去参与吧！</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!--公众号关注  -->
+    <button class="attention" open-type='contact'>
+        <image src="/img/attention.png"></image>
+        <text>关注公众号，\n接收报名信息</text>
+    </button> 
+</view>

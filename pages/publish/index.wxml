@@ -1,0 +1,70 @@
+<view class="parent">
+    <view class="top">
+        <image src="{{poster_src}}" mode="aspectFill"></image>
+        <view class="add_poster" bindtap="add_poster">
+            <image src="/img/carmara.png"></image>
+            添加封面
+        </view>
+    </view>
+    <!--内容  -->
+    <view class="content">
+        <view class="form_area">
+            <form bindsubmit='formsbumit'>
+                <view class="item_form">
+                    <view>
+                        <text class="input_inf">主题</text>
+                        <input type="text" name="title" maxlength='15' placeholder='请输入活动主题'></input>
+                    </view>
+                </view>
+                <view class="item_form">
+                    <view>
+                        <text class="input_inf">集结口号</text>
+                        <input type="text" name="slogan" maxlength='15'  placeholder='请输入集结口号'></input>
+                    </view>
+                </view>
+                <view class="item_form">
+                    <view>
+                        <text class="input_inf">人数</text>
+                        <input type="number"  name="num" maxlength='3' placeholder='请输入人数' bindblur="member_num" ></input>
+                    </view>
+                </view>
+                <view class="item_form">
+                    <view class="date">
+                        <text class="input_inf">开始时间</text>
+                        <!-- <input type="text" name="date" placeholder='1月1日下午2点-1月4日下午8点'></input> -->
+                        <picker mode="multiSelector" value="{{dateTime1}}" bindchange="changeDateTime1" bindcolumnchange="changeDateTimeColumn1" range="{{dateTimeArray1}}">
+                            <view class="tui-picker-detail">
+                               {{dateTimeArray1[0][dateTime1[0]]}}年{{dateTimeArray1[1][dateTime1[1]]}}月{{dateTimeArray1[2][dateTime1[2]]}}日{{dateTimeArray1[3][dateTime1[3]]<12? "上午" : "下午"}}{{dateTimeArray1[3][dateTime1[3]]}}点
+                            </view>
+                            <image src="/img/date.png"></image>
+                        </picker>
+                    </view>
+                </view>
+                <view class="item_form">
+                    <view class="date">
+                        <text class="input_inf">结束时间</text>
+                        <!-- <input type="text" name="date" placeholder='1月1日下午2点-1月4日下午8点'></input> -->
+                        <picker mode="multiSelector" value="{{dateTime2}}" bindchange="changeDateTime2" bindcolumnchange="changeDateTimeColumn2" range="{{dateTimeArray2}}">
+                            <view class="tui-picker-detail">
+                               {{dateTimeArray2[0][dateTime2[0]]}}年{{dateTimeArray2[1][dateTime2[1]]}}月{{dateTimeArray2[2][dateTime2[2]]}}日{{dateTimeArray2[3][dateTime2[3]]<12? "上午" : "下午"}}{{dateTimeArray2[3][dateTime2[3]]}}点
+                            </view>
+                            <image src="/img/date.png"></image>
+                        </picker>
+                    </view>
+                </view>
+                <view class="item_form input_area">
+                    <text class="title_inf">活动描述</text>
+                    <textarea placeholder='请输入活动描述' maxlength='200' name="act_msg" cursor-spacing="80"></textarea>
+                </view>
+                <button class="publish" formType="submit">发布</button>
+            </form>
+
+        </view>
+    </view>
+</view>
+
+<!--提示弹框  -->
+<view class="toust_mark" wx:if="{{showToast}}">
+     <image src="/img/tip.png"></image>
+     <text>{{toast_msg}}</text>
+</view>

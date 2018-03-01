@@ -1,0 +1,59 @@
+ <import src="../../../wxParse/wxParse.wxml"/>  
+
+<view class="parent">
+    <view class="broadcast_area">
+        <image src="/img/broadcast2.png" class="bg_img"></image>
+        <text class="publish_status" wx:if="{{entry=='publish_success'}}">发布成功</text>
+        <text class="publish_status" wx:else>他们也在找人</text>
+        <view class="publish_inf" wx:if="{{entry=='publish_success'}}">
+             <view>你可以在<text class="color" bindtap='my_plublish_act'>我发布的活动</text></view>
+             <text>中管理活动和获取报名通知</text>
+        </view>
+        <view class="publish_inf" wx:else>
+             <view>你可以邀请他们加入<text class="color" bindtap='my_plublish_act'>你的活动</text></view>
+             <text>或参加他们的活动</text>
+        </view>
+    </view>
+    <!--内容区  -->
+    <view class="content">
+        <!--list  -->
+        <view class="list_wrap">
+            <text class="title">他们也在找人</text>
+            <view class="list" wx:if="{{act_data.length}}">
+                <view class="item" bindtap='tab_actdetails' data-id="{{item.id}}" wx:for="{{act_data}}">
+                    <view class="top">
+                        <view class="item_title"><template is="wxParse" data="{{wxParseData:replyTemArray[index]}}" /></view>
+                        <view class="subtitle"><template is="wxParse" data="{{wxParseData:replyTemArray2[index]}}" /></view>
+                    </view>
+                    <view class="pro_img">
+                        <image src="{{item.activity_img}}" mode="aspectFill"></image>
+                        <text class="tip">{{item.time}}</text>
+                        <view class="num">报名人数:<template is="wxParse" data="{{wxParseData:replyTemArray1[index]}}" /> </view>
+                    </view>
+                    <view class="foot">
+                        <view class="left">
+                            <image class="img" src="{{item.publish_user_img}}"></image>
+                            <text class="activity_title">{{item.publish_user_nickname}}</text>
+                            <text class="distance">{{item.distance}}</text>
+                        </view>
+                        <view class="right">
+                            <text class="invatation" catchtap='invite_friend' data-id="{{item.id}}">邀请TA</text>
+                        </view>
+                    </view>
+                </view>
+            </view>  
+            <view class="list" wx:else>
+                <view class="item">
+                    <view class="broadcast">
+                        <image src="/img/broadcast1.png"></image>
+                    </view>
+                    <text class="tip_msg">没有相似活动</text>
+                </view>
+            </view>  
+        </view>
+    </view>
+    <!--呼朋唤友  -->
+    <view class="invite_friend" bindtap='tab_actdetails' data-id="{{act_id}}" wx:if="{{entry=='publish_success'}}"> 
+          <button>呼朋唤友</button>
+    </view> 
+</view>

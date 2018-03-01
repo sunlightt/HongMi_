@@ -1,0 +1,26 @@
+page{
+   min-height:100%;
+   background:#f8f8f8;
+}
+.content{
+    padding:0 25rpx;
+}
+.list_wrap{
+    padding-bottom:30rpx;
+}
+.list .item {
+    background:#fff;
+}
+.list_wrap{
+    padding-top:10rpx;
+}
+.list .top .color{
+    color:#ff5d5d;
+}
+.list .top .color view , .list .top .item_title view{
+    display:inline-block;
+}
+.list .item .foot .right .num view{
+     display:inline-block;
+}
+

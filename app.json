@@ -1,0 +1,47 @@
+{
+    "pages": [
+
+        "pages/index/index",
+        "pages/person/index",
+        "pages/activity/search/index",
+        "pages/activity/member/index",
+        "pages/activity/details/index",
+        "pages/activity/audit/index",
+        "pages/activity/change_act/index",
+        "pages/activity/share_success/index",
+        "pages/publish/index",
+        "pages/publish/publish_success/index"
+        
+    ],
+    "window": {
+        "backgroundTextStyle": "dark",
+        "navigationBarBackgroundColor": "#FED612",
+        "navigationBarTitleText": "HOMIE",
+        "navigationBarTextStyle": "black",
+        "backgroundColor":"#FED612",
+        "enablePullDownRefresh":true
+    },
+    "tabBar": {
+        "selectedColor": "#FED612",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "iconPath": "img/home.png",
+                "selectedIconPath": "img/home1.png",
+                "text":"发现"
+            },
+            {
+                "pagePath": "pages/publish/index",
+                "iconPath": "img/center.png",
+                "selectedIconPath": "img/center1.png",
+                "text": "发布"
+            },
+            {
+                "pagePath": "pages/person/index",
+                "iconPath": "img/person.png",
+                "selectedIconPath": "img/person1.png",
+                "text": "我的"
+            }
+        ]
+    }
+}

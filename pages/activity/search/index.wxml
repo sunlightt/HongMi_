@@ -1,0 +1,54 @@
+
+<import src="../../../wxParse/wxParse.wxml"/> 
+
+<view class="parent">
+    <view class="search_box">
+        <view class="search">
+            <form bindsubmit="search">
+                <button form-type='submit' class="search_act search_btn">
+                    <image src="/img/search.png"></image>
+                </button>
+                <input type="text" name="search_val" placeholder='搜索'  value="{{search_val}}" bindconfirm="search_act" confirm-type="search"></input>
+            </form>
+        </view>
+    </view>
+    <!--内容区  -->
+    <view class="content">
+        <!--list  -->
+        <view class="list_wrap">
+            <!-- <text class="title">活动</text> -->
+            <view class="list" wx:if="{{search_data.length}}">
+                <view class="item" bindtap='tab_actdetails' data-id="{{item.id}}" wx:for="{{search_data}}">
+                    <view class="top">
+                        <!-- <view class="item_title color">明天去滑雪有人去吗?</view> -->
+                        <view class="item_title"><template is="wxParse" data="{{wxParseData:replyTemArray[index]}}" /></view>
+                        <view class="subtitle"><template is="wxParse" data="{{wxParseData:replyTemArray2[index]}}" /></view>
+                    </view>
+                    <view class="pro_img">
+                         <image src="{{item.activity_img}}" mode="aspectFill"></image>
+                         <text class="tip">{{item.time}}</text>
+                    </view>
+                    <view class="foot">
+                        <view class="left">
+                            <image class="img" src="{{item.publish_user_img}}"></image>
+                            <text class="activity_title">{{item.publish_user_nickname}}</text>
+                            <text class="distance">{{item.distance}}</text>
+                        </view>
+                        <view class="right">
+                            <!-- <view class="num">报名人数:<text>5/30人</text>    </view> -->
+                            <view class="num">报名人数:<template is="wxParse" data="{{wxParseData:replyTemArray1[index]}}" /></view> 
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="list" wx:else>
+                <view class="item">
+                    <view class="broadcast">
+                        <image src="/img/broadcast1.png"></image>
+                    </view>
+                    <text class="tip_msg">没有查询到结果！</text>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

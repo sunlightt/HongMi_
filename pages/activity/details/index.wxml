@@ -1,0 +1,97 @@
+<view class="parent">
+    <view class="top">
+        <image src="{{act_data.cover}}" mode="aspectFill"></image>
+        <view class="add_poster">
+            <image src="/img/broadcast.png"></image>
+            {{act_data.slogan}}
+        </view>
+    </view>
+    <!--内容  -->
+    <view class="content">
+        <view class="form_area">
+            <form bindsubmit='signup' report-submit="true">
+                <!--type  -->
+                <view>
+                    <input type="text" name="type" value="{{act_data.user_apply_status==2 ? 1 : 2}}" hidden></input>
+                </view>
+                <view class="activity_manage">
+                    <view class="manage_item">
+                        <view class="left">
+                            <text class="team">队长</text>
+                            <view class="team_name team_first">
+                                <image src="{{act_data.founder_user_img}}"></image>
+                                <text>{{act_data.founder_user_nickname}}</text>
+                            </view>
+                        </view>
+                        <view class="right">
+                            <text class="look_member" bindtap='member_card' data-id="{{act_data.id}}">查看队伍名片</text>
+                        </view>
+                    </view>
+                    <view class="manage_item border_bottom">
+                        <view class="left">
+                            <text class="team">队员</text>
+                            <view class="team_name team_head">
+                                <image src="{{item}}" wx:for="{{act_data.team_user_img}}"></image>
+                            </view>
+                        </view>
+                        <view class="right">
+                            <text class="member_num">{{act_data.team_user_num}}</text>
+                        </view>
+                    </view>
+                </view>
+                <view class="item_form">
+                    <label>
+                        <text class="input_inf">活动</text>
+                        <text class="activity_msg">{{act_data.title}}</text>
+                        <!-- <input type="text" placeholder='请输入活动主题' class="activity_msg"></input> -->
+                    </label>
+                </view>
+                <view class="item_form">
+                    <label>
+                        <text class="input_inf">人数</text>
+                        <text class="activity_msg">{{act_data.people_num}}人</text>
+                    </label>
+                </view>
+                <view class="item_form date">
+                    <label>
+                        <text class="input_inf">时间</text>
+                        <text class="activity_msg">{{act_data.start_and_end_time}}</text>
+                    </label>
+                </view>
+                <view class="item_form input_area">
+                    <text class="title_inf">活动描述</text>
+                    <textarea placeholder='杭州西湖一日游' value="{{act_data.dec}}" disabled="true"></textarea>
+                </view>
+
+                <!--队长视角  -->
+                <view class="publish publish_details team_publish_details" wx:if="{{act_data.user_type==1}}">
+                    <button open-type='share' class="share_btn_details">分享</button>
+                    <!-- <button class="back_btn" bindtap='back_home'>
+                          <image src="/img/back.png"></image>
+                     </button> -->
+                </view>
+                <!--队员视角  -->
+                <view class="publish publish_details" wx:else>
+                    <button wx:if="{{act_data.user_apply_status==2}}" form-type='submit' data-sign_type="1" data-id="{{act_data.id}}" class="replay_btn">报名参加</button>
+                    <button class="cancel replay_btn" wx:else form-type='submit' data-sign_type="2" data-id="{{act_data.id}}">取消报名</button>
+                    <button open-type='share' class="share">
+                        <image src="/img/share.png"></image>
+                        <text>分享好友</text>
+                    </button>
+                    <button class="back_btn" bindtap='back_home'>
+                        <image src="/img/hose.png"></image>
+                        <text>返回首页</text>
+                    </button>
+                </view>
+            </form>
+        </view>
+    </view>
+</view>
+
+<!--保存二维码  -->
+<view class="code_mark" wx:if="{{app_code}}">
+     <view class="code">
+          <image src="{{code_src}}" mode='aspectFit'></image>
+          <view class="save_code" bindtap="save_code">保存二维码</view>
+     </view>
+</view>

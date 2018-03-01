@@ -1,0 +1,84 @@
+<view class="parent">
+    <!--左右按钮  -->
+    <view class="btn_pre btn" data-index="{{current_view}}" bindtap="pre">
+        <image src="/img/btn_pre.png"></image>
+    </view>
+    <view class="btn_next btn" data-index="{{current_view}}" bindtap="nex">
+        <image src="/img/btn_next.png"></image>
+    </view>
+    <view class="card_box">
+        <swiper interval="2000" duration="1000" class="swiper" current="{{current_view}}" data-index="{{current_view}}" bindchange='change_view'>
+            <block wx:for="{{member_card_inf}}" wx:if="{{index<current_member}}">
+                <swiper-item>
+                    <view class="person_card">
+                        <view class="top">
+                            <view class="left">
+                                <view class="head_img">
+                                    <image src="{{item.head_img}}" class="head"></image>
+                                    <view class="sex {{item.sex!='1' ? '' : 'sex1'}}">
+                                        <image src="/img/sex.png" wx:if="{{item.sex!='1'}}"></image> 
+                                        <image src="/img/sex1.png" wx:else></image>
+                                    </view>
+                                </view>
+                                <text class="name">{{item.nickname}}</text>
+                                <text class="roles">{{item.user_tag}}</text>
+                            </view>
+                            <view class="right">
+                                <text wx:if="{{item.invite_show_status && invi_id_onoff && invi_openid!=item.user_openid}}" bindtap="invi_friend" data-user_openid="{{item.user_openid}}">邀请TA</text>
+                            </view>
+                        </view>
+                        <view class="person_content" style="height:100%;oveflow-y:auto;">
+                            <scroll-view scroll-y style="height:100%" scroll-with-animation="true">
+                                <view class="msg_list">
+                                    <view class="item_msg">
+                                        <text class="msg_tip">姓名</text>
+                                        <text class="msg_inf">{{item.name== '无' ? '暂无信息' : item.name }}</text>
+                                    </view>
+                                    <view class="item_msg">
+                                        <text class="msg_tip">公司</text>
+                                        <text class="msg_inf">{{item.company == '无' ? '暂无信息' : item.company}}</text>
+                                    </view>
+                                    <view class="item_msg">
+                                        <text class="msg_tip">学校</text>
+                                        <text class="msg_inf">{{item.school == '无' ? '暂无信息' : item.school}}</text>
+                                    </view>
+                                    <view class="item_msg">
+                                        <text class="msg_tip">职位</text>
+                                        <text class="msg_inf">{{item.vocation == '无' ? '暂无信息' : item.vocation}}</text>
+                                    </view>
+                                    <view class="item_msg">
+                                        <text class="msg_tip">微信</text>
+                                        <view class="msg_inf">{{item.wx_num}}<text class="copy" wx:if="{{item.is_type!=2 && item.wx_num!='暂无信息'}}" data-text="{{item.wx_num}}" bindtap='copy'>复制</text></view>
+                                    </view>
+                                    <view class="item_msg">
+                                        <text class="msg_tip">手机</text>
+                                        <view class="msg_inf" wx:if="{{item.is_type==3 && !invi_id_onoff }}">{{item.mobile}}<text class="copy" wx:if="{{item.is_type==3 && !invi_id_onoff }}" data-text="{{item.mobile}}" bindtap='copy'>复制</text></view>
+                                        <view class="msg_inf" wx:else>仅队长可见</view>
+                                    </view>
+                                    <view class="item_msg_text">
+                                        <text class="msg_title">资源</text>
+                                        <text class="msg_text">{{item.resource == '无' ? '暂无信息' : item.resource}}</text>
+                                    </view>
+                                    <view class="item_msg_text">
+                                        <text class="msg_title">需求</text>
+                                        <text class="msg_text">{{item.need == '无' ? '暂无信息' : item.need}}</text>
+                                    </view>
+                                </view>
+                            </scroll-view>
+                        </view>
+                    </view>
+                </swiper-item>
+            </block>
+        </swiper>
+    </view>
+    <!--队员队列  -->
+    <view class="member_list">
+        <scroll-view scroll-x style="width:100%;height:100rpx;" scroll-left="{{scroll_left}}">
+            <view class="head_list" style="width:{{scroll_width}}">
+                <view class="item {{item.style}}" wx:for="{{member_head_inf}}" data-id="{{item.user_id}}" bindtap='tab_view'>
+                    <image src="{{item.head_img}}"></image>
+                </view>
+            </view>
+        </scroll-view>
+    </view>
+</view>

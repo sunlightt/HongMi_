@@ -1,0 +1,29 @@
+@import '/pages/publish/index.wxss';
+
+page{
+    min-height:100%;
+    background:#f9f9f9;
+}
+
+.bnt_area {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-right:26rpx;
+    /* position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    padding:18rpx 0;
+    background:#fff;
+    background:#fff; */
+}
+
+.bnt_area .close {
+    background: #fff;
+    box-shadow:0  10rpx 8rpx 5rpx #f4f4f4;
+}
+.form_area .publish{
+    width:40%;
+}
+

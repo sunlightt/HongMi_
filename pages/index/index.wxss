@@ -1,0 +1,56 @@
+
+.search_box{
+    background:#FED612;
+}
+.content{
+    padding:0 25rpx;
+}
+.banner {
+    /* padding:16rpx  0  0 35rpx; */
+    padding:16rpx  0  0 0;
+}
+.banner swiper , .banner swiper-item  , .banner image{
+    display:block;
+    width:100%;
+    height:320rpx;
+}
+.banner image{
+    margin:0 16rpx;
+    border-radius:20rpx;
+}
+.banner swiper-item{
+    border-radius:20rpx;
+    overflow:hidden;
+}
+.list_wrap {
+    padding-bottom:30rpx;
+}
+.list .item{
+    background:#fff;
+}
+.list .item .foot .right .num view{
+    display:inline-block;
+}
+
+.list .item .foot .right .num view view{
+    font:28rpx/44rpx '微软雅黑';
+    color:#141414;
+    font-weight:bold;
+}
+
+
+.color{
+    color:red;
+}
+
+.bg_color{
+     /* height:120rpx; */
+     position:fixed;
+     top:0;
+     bottom:0;
+     left:0;
+     right:0;
+     /* background:#FED612; */
+     background:#333;
+     z-index:-1;
+}

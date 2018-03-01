@@ -1,0 +1,233 @@
+
+page{
+    height:100%;
+    background:#ffd100;
+}
+.parent{
+    height:100%;
+    padding:38rpx 44rpx 0;
+    box-sizing:border-box;
+    position:relative;
+}
+swiper-item {
+    padding:0 10rpx;
+    box-sizing:border-box;
+}
+.btn{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    width:40rpx;
+    height:24rpx;
+    position:absolute;
+    top:50%;
+    margin-top:-12rpx;
+}
+.btn image{
+    display:block;
+    width:14rpx;
+    height:24rpx;
+    margin:0 auto;
+}
+.btn_pre{
+    left:0;
+}
+.btn_next{
+    right:0;
+}
+.card_box{
+    height:80%;
+}
+.person_card{
+    height:100%;
+    padding:208rpx 32rpx 0 52rpx;
+    border-radius:50rpx;
+    background:#fff;
+    overflow:hidden;
+    position:relative;
+    box-sizing:border-box;
+}
+.person_card .top{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    padding:66rpx 32rpx 32rpx 52rpx;
+    background:#fcfdff;
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+}
+.person_card .top .left{
+    flex:7;
+    padding-left:144rpx;
+    position:relative;
+}
+.person_card .top .left .head_img{
+    width:100rpx;
+    height:100rpx;
+    position:absolute;
+    top:50%;
+    margin-top:-50rpx;
+    left:0;
+}
+.person_card .top .left .head_img .head{
+    display:block;
+    width:100rpx;
+    height:100rpx;
+    border-radius:50%;
+}
+.person_card .top .left .head_img .sex{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    width:28rpx;
+    height:28rpx;
+    position:absolute;
+    bottom:0;
+    right:-5rpx;
+    background:#ffa0a0;
+    border-radius:50%; 
+}
+.person_card .top .left .head_img .sex1{
+    background:#6ea7ff;
+}
+.person_card .top .left .head_img .sex image{
+    display:block;
+    width:14rpx;
+    height:14rpx;
+    margin:0 auto;
+}
+.person_card .top .left .name{
+    display: -webkit-box;
+    text-overflow:ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp:1;
+    overflow: hidden;
+    font:38rpx/56rpx '微软雅黑';
+    color:#2a2a2a;
+    font-weight:bold;
+}
+.person_card .top .left .roles{
+    display: -webkit-box;
+    text-overflow:ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp:1;
+    overflow: hidden;
+    font:24rpx/54rpx '微软雅黑';
+    color:#2a2a2a;
+}
+.person_card .top  .right{
+    flex:4;
+    text-align:right;
+}
+.person_card .top  .right text{
+    display:inline-block; 
+    height:48rpx;
+    line-height:51rpx;
+    font:20rpx/51rpx '微软雅黑';
+    color:#231d25;
+    padding:0 20rpx;
+    background:#fed612;
+    border-radius:30rpx;
+}
+.person_content{
+    height:100%;
+    padding-top:16rpx;
+}
+.person_content .item_msg{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+}
+.person_content .item_msg .msg_tip{
+    font:26rpx/86rpx '微软雅黑';
+    color:#2a2a2a;
+    font-weight:bold;
+}
+.person_content .item_msg .msg_inf{
+    font:26rpx/86rpx '微软雅黑';
+    color:#666;
+    display: -webkit-box;
+    text-overflow:ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp:1;
+    overflow: hidden;
+}
+.person_content .item_msg .msg_inf .copy{
+    display:inline-block;
+    font:17rpx/30rpx '微软雅黑';
+    color:#8d8d8d;
+    padding:0 18rpx;
+    background:#d8d8d8;
+    border-radius:20rpx;
+    margin-left:10rpx;
+}
+.person_content .item_msg_text .msg_title{
+    display:block;
+    font:26rpx/54rpx '微软雅黑';
+    color:#2a2a2a;
+    font-weight:bold;
+}
+.person_content .item_msg_text .msg_text{
+    display:block;
+    font:26rpx/42rpx '微软雅黑';
+    color:#6c6c6c;
+}
+.person_content .msg_list{
+    padding-bottom:30rpx;
+}
+/* ::-webkit-scrollbar{
+    width:0;
+    height:0;
+    background:transparent;
+} */
+
+.swiper{
+    height:100%;
+}
+
+.member_list{
+    height:100rpx;
+    position:fixed;
+    left:44rpx;
+    right:44rpx;
+    bottom:54rpx;
+}
+.head_list{
+    height:100rpx;
+    width:150%;
+}
+.member_list .head_list .item{
+    width:100rpx;
+    height:100rpx;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    float:left;
+    margin-left:6rpx;
+}
+.member_list .head_list .item:first-child{
+    margin-left:0;
+}
+.member_list .head_list .item image{
+    display:block;
+    width:76rpx;
+    height:76rpx;
+    margin:0 auto;
+    border-radius:50%;
+    border:4rpx solid transparent;
+    transition:all .5s;
+}
+.member_list .head_list .default image{
+     border:4rpx solid #fff; 
+}
+.member_list .head_list .active {
+    margin:0 12rpx 0;
+}
+.member_list .head_list .active image{
+    width:92rpx;
+    height:92rpx;
+    border:4rpx solid #fff; 
+}
+
