@@ -3,7 +3,7 @@ page{
     background:#fafafa;
 }
 .parent{
-    padding-bottom:30rpx;
+    padding-bottom:160rpx;
 }
 .top{
     position:relative;
@@ -69,16 +69,19 @@ page{
 .form_area  .input_area{
     display:block;
 }
+.form_area  .input_area  text{
+    display:block;
+    width:100%;
+    font:26rpx/40rpx '微软雅黑';
+    color:#3e3e3e;
+    /* height:160rpx; */
+    padding:10rpx 0;
+}
 .form_area  .input_area .title_inf{
     flex:4;
     font:28rpx/86rpx '微软雅黑';
-    color:#b9b9b9;
+    color:#2a2a2a;
     font-weight:bold;
-}
-.form_area  .input_area  textarea{
-    font:26rpx/40rpx '微软雅黑';
-    color:#e5e5e5;
-    height:160rpx;
 }
 .form_area .publish{
     /* width:45%; */
@@ -324,4 +327,41 @@ page{
     border-radius:50rpx;
     box-shadow:0  10rpx 8rpx 5rpx #fdf1ba;
     
+}
+
+.showaction{
+    position:fixed;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    background:rgba(0,0,0,.8);
+    z-index:9999;
+}
+
+.showaction .list{
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+}
+.showaction .list .item{
+    display:block;
+    width:100%;
+    font:40rpx/90rpx '微软雅黑';
+    color:#333;
+    text-align:center;
+    background:#fff;
+    box-sizing:border-box;
+    padding:0 20rpx;
+    border-radius:0;
+    margin-top:0;
+    border-bottom:1px solid #d0c9c7;
+    
+}
+.showaction .list .item::after{
+    border:none;
+}
+.showaction .list .cancel{
+    border-bottom:8rpx solid #efeff4;
 }

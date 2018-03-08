@@ -60,12 +60,13 @@
                 </view>
                 <view class="item_form input_area">
                     <text class="title_inf">活动描述</text>
-                    <textarea placeholder='杭州西湖一日游' value="{{act_data.dec}}" disabled="true"></textarea>
+                    <text>{{act_data.dec}}</text>
                 </view>
 
                 <!--队长视角  -->
                 <view class="publish publish_details team_publish_details" wx:if="{{act_data.user_type==1}}">
-                    <button open-type='share' class="share_btn_details">分享</button>
+                    <!-- <button open-type='share' class="share_btn_details">分享</button> -->
+                    <button  class="share_btn_details" bindtap='showaction'>分享</button>
                     <!-- <button class="back_btn" bindtap='back_home'>
                           <image src="/img/back.png"></image>
                      </button> -->
@@ -74,7 +75,11 @@
                 <view class="publish publish_details" wx:else>
                     <button wx:if="{{act_data.user_apply_status==2}}" form-type='submit' data-sign_type="1" data-id="{{act_data.id}}" class="replay_btn">报名参加</button>
                     <button class="cancel replay_btn" wx:else form-type='submit' data-sign_type="2" data-id="{{act_data.id}}">取消报名</button>
-                    <button open-type='share' class="share">
+                    <!-- <button open-type='share' class="share">
+                        <image src="/img/share.png"></image>
+                        <text>分享好友</text>
+                    </button> -->
+                    <button  class="share" bindtap='showaction'>
                         <image src="/img/share.png"></image>
                         <text>分享好友</text>
                     </button>
@@ -93,5 +98,15 @@
      <view class="code">
           <image src="{{code_src}}" mode='aspectFit'></image>
           <view class="save_code" bindtap="save_code">保存二维码</view>
+     </view>
+</view>
+
+
+<!--showActionSheet  -->
+<view class="showaction" wx:if="{{share_status}}">
+     <view class="list">
+           <button open-type='share' class="item" bindtap="share_btn">分享好友/微信群</button>
+           <view class="item cancel" bindtap="share_friends">分享朋友圈</view>
+           <view class="item" bindtap='cancel_share'>取消</view>
      </view>
 </view>

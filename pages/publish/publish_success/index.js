@@ -90,8 +90,6 @@ Page({
             },
             success:function(res){
 
-                console.log(res);
-
                 wx.hideToast();
 
                 if (res.data.status == 1 && res.data.data) {
@@ -164,11 +162,13 @@ Page({
 
     },
     tab_actdetails: function (e) {
+        app.aldstat.sendEvent('呼朋唤友');
         wx.navigateTo({
             url: '/pages/activity/details/index?id=' + e.currentTarget.dataset.id
         });
     },
     invite_friend:function(e){
+        app.aldstat.sendEvent('邀请TA');
         var that=this;
         wx.navigateTo({
             url: '/pages/activity/member/index?id=' + e.currentTarget.dataset.id + '&invi_id=' + that.data.act_id + '&invi_openid=' + that.data.invi_openid

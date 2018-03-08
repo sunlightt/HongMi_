@@ -1,7 +1,7 @@
 <view class="parent">
     <view class="top">
-        <image src="{{poster_src}}" mode="aspectFill"></image>
-        <view class="add_poster" bindtap="add_poster">
+        <image src="{{poster_src}}" mode="aspectFill" bindtap="add_poster"></image>
+        <view class="add_poster" catchtap='add_poster'>
             <image src="/img/carmara.png"></image>
             添加封面
         </view>

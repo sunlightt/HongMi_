@@ -48,11 +48,12 @@
                                     </view>
                                     <view class="item_msg">
                                         <text class="msg_tip">微信</text>
-                                        <view class="msg_inf">{{item.wx_num}}<text class="copy" wx:if="{{item.is_type!=2 && item.wx_num!='暂无信息'}}" data-text="{{item.wx_num}}" bindtap='copy'>复制</text></view>
+                                        <view class="msg_inf" wx:if="{{item.is_type!=2 && is_member && item.wx_num!='暂无信息'}}">{{item.wx_num}}<text class="copy" wx:if="{{item.is_type!=2 && item.wx_num!='暂无信息'}}" data-text="{{item.wx_num}}" bindtap='copy'>复制</text></view>
+                                        <view class="msg_inf" wx:else>仅队员可见</view>
                                     </view>
                                     <view class="item_msg">
                                         <text class="msg_tip">手机</text>
-                                        <view class="msg_inf" wx:if="{{item.is_type==3 && !invi_id_onoff }}">{{item.mobile}}<text class="copy" wx:if="{{item.is_type==3 && !invi_id_onoff }}" data-text="{{item.mobile}}" bindtap='copy'>复制</text></view>
+                                        <view class="msg_inf" wx:if="{{item.is_type==3 && is_member && !invi_id_onoff }}">{{item.mobile}}<text class="copy" wx:if="{{item.is_type==3 && !invi_id_onoff }}" data-text="{{item.mobile}}" bindtap='copy'>复制</text></view>
                                         <view class="msg_inf" wx:else>仅队长可见</view>
                                     </view>
                                     <view class="item_msg_text">

@@ -72,6 +72,8 @@ Page({
     },
     onLoad: function () {
 
+        
+
         // 获取完整的年月日 时分秒，以及默认显示的数组
         var obj1 = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear);
         var obj2 = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear);
@@ -89,6 +91,11 @@ Page({
         
             dateTime2: obj2.dateTime
         });
+
+    },
+    onShow:function(res){
+
+        app.aldstat.sendEvent('发布');
 
     },
     publish: function () {
@@ -122,6 +129,8 @@ Page({
     },
 
     add_poster: function () {
+
+        app.aldstat.sendEvent('添加封面');
         var that = this;
         wx.chooseImage({
             count: 1, // 默认9
@@ -134,6 +143,8 @@ Page({
         })
     },
     formsbumit: function (e) {
+
+        
         var that = this;
 
         var date=new Date();
@@ -242,6 +253,8 @@ Page({
             data: send_data,
             success: function (res) {
                 if (res.data.status == 1) {
+
+                    app.aldstat.sendEvent('确认发布');
 
                     wx.showToast({
                         title: '发布成功',

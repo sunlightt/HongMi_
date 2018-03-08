@@ -65,5 +65,10 @@
         </view>
     </view>
 
+</view>
 
+<!--提示弹框  -->
+<view class="toust_mark" wx:if="{{showToast}}">
+     <image src="/img/tip.png"></image>
+     <text>{{toast_msg}}</text>
 </view>

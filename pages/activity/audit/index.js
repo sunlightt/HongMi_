@@ -55,24 +55,24 @@ Page({
         var all_member = that.data.all_member;
         var member_card_inf = that.data.member_card_inf;
         var pass_member_inf_data = that.data.pass_member_inf_data;
-        var current_head_index=0;
-        var scroll_left=0;
+        var current_head_index = 0;
+        var scroll_left = 0;
 
-        for (var i = 0; i < pass_member_inf_data.length;i++){
-            if (member_card_inf[e.detail.current].user_openid == pass_member_inf_data[i].user_openid){
+        for (var i = 0; i < pass_member_inf_data.length; i++) {
+            if (member_card_inf[e.detail.current].user_openid == pass_member_inf_data[i].user_openid) {
                 all_member[i].img_src = pass_member_inf_data[i].head_img;
                 all_member[i].style = 'active';
                 current_head_index = i;
-            }else{
+            } else {
 
                 all_member[i].style = 'default';
             }
         }
 
-        if (current_head_index>5){
-            scroll_left = Number((current_head_index-5) * 50)
-        }else{
-            scroll_left=0;
+        if (current_head_index > 5) {
+            scroll_left = Number((current_head_index - 5) * 50)
+        } else {
+            scroll_left = 0;
         }
 
         this.setData({
@@ -183,19 +183,52 @@ Page({
                             pass_member_inf_data.push(data[i]);
                         }
 
-                        if (data[i].is_status == 1 && data[i].user_openid == member_card_inf[0].user_openid && i == 0) {
-                            all_member[i].img_src = data[i].head_img;
-                            all_member[i].user_id = data[i].user_id;
-                            all_member[i].style = 'active';
+                        
+                    }
+
+                    // for (var i = 0; i < current_mem_len; i++){
+ 
+                    //     if (data[i].is_status == 1 && data[i].user_openid == member_card_inf[0].user_openid && i == 0) {
+                    //         all_member[0].img_src = data[i].head_img;
+                    //         all_member[0].user_id = data[i].user_id;
+                    //         all_member[0].style = 'active';
+                    //         current_head_index = i;
+
+                    //     } else if (data[i].is_status == 1 && pass_member == 1 && data[0].is_status != 1) {
+                    //         all_member[0].img_src = data[i].head_img;
+                    //         all_member[0].user_id = data[i].user_id;
+                    //         all_member[0].style = 'default';
+
+                    //     }else {
+
+                    //         all_member[i].img_src = data[i].head_img;
+                    //         all_member[i].user_id = data[i].user_id;
+                    //         all_member[i].style = 'default';
+
+                    //     }  
+                        
+                    // }
+
+                    console.log(pass_member_inf_data);
+
+                    for (var i = 0; i < pass_member_inf_data.length; i++) {
+
+                        if (pass_member_inf_data[i].is_status == 1 && pass_member_inf_data[i].user_openid == member_card_inf[0].user_openid && i == 0) {
+                            all_member[0].img_src = pass_member_inf_data[i].head_img;
+                            all_member[0].user_id = pass_member_inf_data[i].user_id;
+                            all_member[0].style = 'active';
                             current_head_index = i;
 
-                        } else if (data[i].is_status == 1) {
-                            all_member[i].img_src = data[i].head_img;
-                            all_member[i].user_id = data[i].user_id;
+                        } else {
+
+                            all_member[i].img_src = pass_member_inf_data[i].head_img;
+                            all_member[i].user_id = pass_member_inf_data[i].user_id;
                             all_member[i].style = 'default';
 
                         }
+
                     }
+
                     that.setData({
                         member_card_inf: member_card_inf,
                         member_head_inf: data,
@@ -278,27 +311,48 @@ Page({
                             }
                         }
 
-                        for (var i = 0; i < pass_member_inf_data.length; i++) {
+                        console.log(pass_member_inf_data);
 
+                        for (var i = 0; i < pass_member_inf_data.length; i++) {
+                            
                             if (pass_member_inf_data[i].user_openid == e.currentTarget.dataset.user_openid) {
-                                all_member[i].img_src = data[i].head_img;
-                                all_member[i].user_id = data[i].user_id;
+                                all_member[i].img_src = pass_member_inf_data[i].head_img;
+                                all_member[i].user_id = pass_member_inf_data[i].user_id;
                                 all_member[i].style = 'active';
-                                current_head_index = i;
+                                current_head_index = 0;
                             } else {
-                                all_member[i].user_id = data[i].user_id;
+                                all_member[i].user_id = pass_member_inf_data[i].user_id;
                                 all_member[i].style = 'default';
                             }
-
                         }
+
                     } else {
                         text = '取消成功';
                         member_card_inf[index_target].is_status = '2';
 
-                        for (var i = 0; i < data.length; i++) {
+                        // for (var i = 0; i < data.length; i++) {
 
-                            if (data[i].user_openid == e.currentTarget.dataset.user_openid) {
+                        //     if (data[i].user_openid == e.currentTarget.dataset.user_openid) {
+                        //         pass_member_inf_data.splice(i, 1);
+                        //     }
+                        // }
+
+
+                        for (var i = 0; i < pass_member_inf_data.length; i++) {
+
+                            if (pass_member_inf_data[i].user_openid == e.currentTarget.dataset.user_openid) {
+
+                                console.log(i);
+
+                                // console.log('')
+
+                                all_member[i].img_src = '/img/site.png';
+                                all_member[i].user_id = ' ';
+                                all_member[i].style = ' ';
+
                                 pass_member_inf_data.splice(i, 1);
+
+                                console.log(pass_member_inf_data);
                             }
                         }
 
@@ -306,16 +360,40 @@ Page({
                             all_member[0].img_src = '/img/site.png';
                             all_member[0].style = ' ';
                         }
+
+                        // for (var i = 0; i < pass_member_inf_data.length; i++) {
+
+                        //     if (pass_member_inf_data[i].user_openid == e.currentTarget.dataset.user_openid) {
+                        //         all_member[index].img_src = data[i].head_img;
+                        //         all_member[i].user_id = data[i].user_id;
+                        //         all_member[index].style = 'active';
+                        //         current_head_index = i;
+                        //     } else {
+                        //         all_member[i].user_id = data[i].user_id;
+                        //         all_member[index].style = 'default';
+                        //     }
+
+                        // }
+
+
+                        console.log(pass_member_inf_data.length);
+                        console.log(pass_member_inf_data);
+
+
                         for (var i = 0; i < pass_member_inf_data.length; i++) {
 
                             if (pass_member_inf_data[i].user_openid == e.currentTarget.dataset.user_openid) {
-                                all_member[index].img_src = data[i].head_img;
-                                all_member[i].user_id = data[i].user_id;
-                                all_member[index].style = 'active';
+                                all_member[i].img_src = pass_member_inf_data[i].head_img;
+                                all_member[i].user_id = pass_member_inf_data[i].user_id;
+                                all_member[i].style = 'active';
                                 current_head_index = i;
                             } else {
-                                all_member[i].user_id = data[i].user_id;
-                                all_member[index].style = 'default';
+                                // all_member[i].user_id = pass_member_inf_data[i].user_id;
+                                // all_member[index].style = 'default';
+
+                                all_member[i].img_src = pass_member_inf_data[i].head_img;
+                                all_member[i].user_id = pass_member_inf_data[i].user_id;
+                                all_member[i].style = 'default';
                             }
 
                         }
@@ -355,9 +433,9 @@ Page({
             }
         })
     },
-    onPullDownRefresh:function(e){
+    onPullDownRefresh: function (e) {
         wx.stopPullDownRefresh();
-        var that=this;
+        var that = this;
         that.setData({
             all_member: [],
             current_view: 0,

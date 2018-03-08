@@ -6,6 +6,7 @@ var tab_style = ['active', '', ''];
 var publish_data_onoff = true;
 var join_data_onoff = true;
 
+
 Page({
     data: {
 
@@ -33,8 +34,8 @@ Page({
         join_analyze_tab: [],
     },
     onLoad: function (option) {
-        var that = this;
 
+        var that = this;
 
         // 获取用户信息
         that.get_userinf();
@@ -68,6 +69,9 @@ Page({
             that.getpublish_act();
         }
     },
+    onShow:function(){
+        app.aldstat.sendEvent('我');
+    },
     onReachBottom: function (e) {
 
         var that = this;
@@ -86,7 +90,7 @@ Page({
         if ((that.data.tab_index == 1) && (current_page < that.data.publish_sum_data_page)) {
 
             wx.showToast({
-                title: '加载中！',
+                title: '加载中',
                 // icon: 'loading',
                 image: '/img/tip.png'
             });
@@ -191,10 +195,38 @@ Page({
             success: function (res) {
                 if (res.data.status == 1) {
                     that.setData({
-
                         user_inf: res.data.data
 
                     });
+                    if (res.data.data.is_get_unionid==2){
+
+                        wx.getUserInfo({
+                            success:function(res){
+
+                                var encryptedData = res.encryptedData;
+                                var iv = res.iv;
+                                var session_key = wx.getStorageSync('session_key');
+
+                                wx.request({
+                                    url: app.globalData.url + 'index.php?g=&m=api&a=bind_user_unionid',
+                                    data:{
+                                        encryptedData:encodeURIComponent(encryptedData),
+                                        iv:encodeURIComponent(iv),
+                                        session_key:encodeURIComponent(session_key) 
+                                    },
+                                    success:function(res){
+
+                                        console.log(res);
+                                        
+                                    }
+                                })
+
+                                 console.log(res);
+
+
+                            }
+                        });
+                    }
                 }
             }
         });
@@ -368,6 +400,7 @@ Page({
         });
     },
     same_activity: function (e) {
+        app.aldstat.sendEvent('相似活动');
         wx.navigateTo({
             url: '/pages/publish/publish_success/index?id=' + e.currentTarget.dataset.id + '&entry=same_activity' + '&invi_openid=' + e.currentTarget.dataset.invi_openid
         });
@@ -389,19 +422,26 @@ Page({
             });
             return;
         }
-        that.setData({
-            publish_data: [],
-            publish_sum_data_page: 0,
-            publish_sum_data_num: 0,
-            publish_page_start: 0,
-            publish_page_end: 2,
-            publish_current_page: 0
-        });
+        // that.setData({
+        //     publish_data: [],
+        //     publish_sum_data_page: 0,
+        //     publish_sum_data_num: 0,
+        //     publish_page_start: 0,
+        //     publish_page_end: 2,
+        //     publish_current_page: 0
+        // });
         wx.navigateTo({
             url: '/pages/activity/change_act/index?id=' + e.currentTarget.dataset.id
         });
     },
+    attention:function(e){
+      
+        app.aldstat.sendEvent('关注报名通知');
+
+    },
     examine: function (e) {
+
+        app.aldstat.sendEvent('管理活动');
 
         if (e.currentTarget.dataset.status == '0' && e.currentTarget.dataset.act_status == 1) {
             wx.showToast({
@@ -430,7 +470,14 @@ Page({
             });
         }
     },
+    contact:function(e){
+
+        app.aldstat.sendEvent('意见反馈');
+
+    },
     formSubmit: function (e) {
+
+        app.aldstat.sendEvent('保存名片');
 
         var that = this;
         var name = e.detail.value.username;
@@ -487,7 +534,6 @@ Page({
             delete send_data['need'];
 
         }
-
         wx.request({
             url: app.globalData.url + 'index.php?g=&m=api&a=edit_my_user_info',
             data: send_data,

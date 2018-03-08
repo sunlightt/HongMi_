@@ -19,7 +19,7 @@ Page({
         analyze_tab: [],
         distance_arr: [],
 
-        showToast:true,
+        showToast: true,
     },
     onLoad: function (option) {
         var that = this;
@@ -28,14 +28,18 @@ Page({
 
         this.get_act_list();
 
-        setTimeout(function(){
+        setTimeout(function () {
 
             that.setData({
                 showToast: false
             });
 
-        },3000);
+        }, 3000);
 
+    },
+    onShow: function () {
+
+        app.aldstat.sendEvent('我');
     },
     onReachBottom: function (e) {
         var that = this;
@@ -96,7 +100,7 @@ Page({
                         console.log('获取用户登录态失败！' + res.errMsg);
                     }
                 }
-                
+
             });
         }
         if (get_localtion_onoff) {
@@ -120,7 +124,7 @@ Page({
                         success: function (res) {
                             wx.hideToast();
                             that.setData({
-                                showToast:false
+                                showToast: false
                             });
                             if (res.data.status == 1 && res.data.data) {
                                 var old_data = that.data.act_data;
@@ -243,12 +247,12 @@ Page({
 
         var search_val = e.detail.value.search_val;
 
-        if (search_val==''){
+        if (search_val == '') {
 
             wx.showToast({
                 title: '请输入查询活动',
-                icon:'loading',
-                duration:1000
+                icon: 'loading',
+                duration: 1000
             });
             return;
         }
@@ -256,7 +260,7 @@ Page({
             url: '/pages/activity/search/index?search_val=' + search_val
         });
     },
-    search_act:function(e){
+    search_act: function (e) {
         var search_val = e.detail.value;
         if (search_val == '') {
 
@@ -296,8 +300,8 @@ Page({
             }
         });
     },
-    onPullDownRefresh:function(e){
-        var that=this;
+    onPullDownRefresh: function (e) {
+        var that = this;
         wx.stopPullDownRefresh();
         that.setData({
             act_data: [],
@@ -313,7 +317,19 @@ Page({
         this.getBanner();
         this.get_act_list();
     },
-    onTabItemTap: function (item) {
-        console.log(item);
+    onShareAppMessage: function (e) {
+        app.aldstat.sendEvent('分享');
+        var that = this;
+        return {
+            title: that.data.act_data.title,
+            path: '/pages/index/index',
+            success: function (res) {
+                wx.showToast({
+                    title: '分享成功',
+                    icon: 'loading',
+                    duration: 1000
+                });
+            }
+        }
     }
 })

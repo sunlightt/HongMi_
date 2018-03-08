@@ -8,7 +8,7 @@
                 <text class="name">{{user_inf.nickname}}</text>
             </view>
             <view class="right">
-                <button class="feedback" open-type='contact'>
+                <button class="feedback" open-type='contact' bindtap="contact">
                     <image src="/img/tell.png"></image>
                     <text>意见反馈</text>
                 </button>
@@ -168,7 +168,7 @@
         </view>
     </view>
     <!--公众号关注  -->
-    <button class="attention" open-type='contact'>
+    <button class="attention" open-type='contact' bindtap='attention'>
         <image src="/img/attention.png"></image>
         <text>关注公众号，\n接收报名信息</text>
     </button> 

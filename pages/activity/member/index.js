@@ -20,7 +20,11 @@ Page({
         invi_id: null,
         invi_id_onoff: false,
         //invi_openid 邀请者openid
-        invi_openid:null
+        invi_openid:null,
+
+        // 当前浏览者是否报名参加了活动  是否是队员
+
+        is_member:false
 
     },
     onLoad: function (option) {
@@ -76,7 +80,23 @@ Page({
                     var data = res.data.data.bottom;
                     var len = res.data.data.top.length;
 
+                    var top_data = res.data.data.top;
+
+
+                    for (var i = 0; i < top_data.length;i++){
+
+                        if (top_data[i].user_openid == wx.getStorageSync('openid')){
+
+                              that.setData({
+
+                                  is_member:true
+                              })
+
+                        }
+                    }
+
                     for (var i = 0; i < data.length; i++) {
+                       
                         if (i == 0 && i < data.length) {
                             data[i].img_src = '/img/head.png';
                             data[i].style = 'active';
@@ -178,6 +198,8 @@ Page({
     },
     tab_view:function(e){
 
+        app.aldstat.sendEvent('切换成员名片');
+
         var that=this;
 
         var user_id = e.currentTarget.dataset.id;
@@ -201,6 +223,7 @@ Page({
 
     },
     copy: function (e) {
+        app.aldstat.sendEvent('复制手机');
         wx.setClipboardData({
             data: e.currentTarget.dataset.text,
             success: function (res) {
@@ -221,10 +244,7 @@ Page({
     },
     invi_friend: function (e) {
         var that = this;
-
-        // console.log(e.currentTarget.dataset.user_openid);
-
-        // return;
+        app.aldstat.sendEvent('邀请');
 
         wx.request({
             url: app.globalData.url + 'index.php?g=&m=api&a=send_wx_invite_api',

@@ -68,7 +68,10 @@ Page({
         endYear: 2050,
         poster_src: '/img/pro_img.png',
         change_type: 1,
-        act_inf:null
+        act_inf:null,
+
+        showToast: false,
+        toast_msg: '信息有误'
 
     },
     onLoad: function (option) {
@@ -183,6 +186,8 @@ Page({
     },
     change_type: function (e) {
 
+        
+
         this.setData({
             change_type: e.currentTarget.dataset.index
         });
@@ -190,6 +195,12 @@ Page({
     formsbumit: function (e) {
 
         var that = this;
+
+        var date = new Date();
+
+        var timestamp = parseInt(Date.parse(new Date()) / 1000);
+
+        var now_hours = date.getHours();
         
         var title = e.detail.value.title;
         var people_num = e.detail.value.num;
@@ -230,6 +241,8 @@ Page({
             slogan: slogan
         };
         if (that.data.change_type == 1) {
+
+            app.aldstat.sendEvent('确认变更');
             send_data = {
                 id: id,
                 user_openid: wx.getStorageSync('openid'),
@@ -246,6 +259,7 @@ Page({
             };
 
         }else{
+            app.aldstat.sendEvent('关闭活动');
             send_data = {
                 user_openid: wx.getStorageSync('openid'),
                 id: id,
@@ -253,24 +267,71 @@ Page({
             };
         }
 
-        if (title == '' || people_num == '' || dec == '') {
+        // if (title == '' || people_num == '' || dec == '') {
+
+        //     wx.showToast({
+        //         title: '信息不完善',
+        //         icon: 'loading',
+        //         duration: 1000
+        //     });
+        //     return;
+
+        // }else if (Number(get_unix_time(start_time)) >= Number(get_unix_time(end_time))) {
+
+        //     wx.showToast({
+        //         title: '活动结束时间设置有误',
+        //         icon: 'loading',
+        //         duration: 1000
+        //     });
+
+        //     return;
+        // }
+
+
+        if (title == '' || dec == '') {
 
             wx.showToast({
-                title: '信息不完善',
+                title: '发布信息不完善',
                 icon: 'loading',
                 duration: 1000
             });
             return;
 
-        }else if (Number(get_unix_time(start_time)) >= Number(get_unix_time(end_time))) {
+        }
 
-            wx.showToast({
-                title: '活动结束时间设置有误',
-                icon: 'loading',
-                duration: 1000
+        if (Number(get_unix_time(start_time)) >= Number(get_unix_time(end_time)) && that.data.change_type == 1) {
+
+            that.setData({
+                toast_msg: '截止时间必须大于开始时间',
+                showToast: true
             });
 
+            setTimeout(function () {
+
+                that.setData({
+                    showToast: false
+                });
+
+            }, 1200);
+
             return;
+        } else if (Number(get_unix_time(start_time)) <= timestamp && hour1 != now_hours && that.data.change_type == 1) {
+
+            that.setData({
+                toast_msg: '开始时间不应小于当前时间',
+                showToast: true
+            });
+
+            setTimeout(function () {
+
+                that.setData({
+                    showToast: false
+                });
+
+            }, 1200);
+
+            return;
+
         }
 
         wx.showModal({

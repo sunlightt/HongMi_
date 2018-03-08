@@ -53,6 +53,14 @@ App({
 
                                 }
 
+                            }else{
+                                wx.getUserInfo({
+                                    success:function(res){
+
+                                         console.log(res);
+
+                                    }
+                                })
                             }
                         }
                     })
@@ -89,7 +97,7 @@ App({
     },
     globalData: {
         qqmapsdk: null,
-        url: 'https://safe.yuanchuangyuan.com/',
+        url: 'https://xcx.homieztech.com/',
         userInfo:null,
         openid:null,
         location:null

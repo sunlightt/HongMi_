@@ -11,7 +11,6 @@
         "pages/activity/share_success/index",
         "pages/publish/index",
         "pages/publish/publish_success/index"
-        
     ],
     "window": {
         "backgroundTextStyle": "dark",
