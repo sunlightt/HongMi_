@@ -10,6 +10,7 @@
         "pages/activity/change_act/index",
         "pages/activity/share_success/index",
         "pages/publish/index",
+        "pages/webview/index",
         "pages/publish/publish_success/index"
     ],
     "window": {

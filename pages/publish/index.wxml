@@ -1,10 +1,10 @@
 <view class="parent">
     <view class="top">
         <image src="{{poster_src}}" mode="aspectFill" bindtap="add_poster"></image>
-        <view class="add_poster" catchtap='add_poster'>
+        <!-- <view class="add_poster" catchtap='add_poster'>
             <image src="/img/carmara.png"></image>
             添加封面
-        </view>
+        </view> -->
     </view>
     <!--内容  -->
     <view class="content">
@@ -54,7 +54,7 @@
                 </view>
                 <view class="item_form input_area">
                     <text class="title_inf">活动描述</text>
-                    <textarea placeholder='请输入活动描述' maxlength='200' name="act_msg" cursor-spacing="80"></textarea>
+                    <textarea placeholder='请输入活动描述' maxlength='400' name="act_msg" cursor-spacing="80"></textarea>
                 </view>
                 <button class="publish" formType="submit">发布</button>
             </form>

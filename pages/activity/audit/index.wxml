@@ -74,7 +74,7 @@
     <!--队员队列  -->
     <view class="member_list">
         <scroll-view scroll-x style="width:100%;height:100rpx;" scroll-left="{{scroll_left}}">
-            <view class="head_list" style="width:{{scroll_width}}">
+            <view class="head_list" style="width:{{scroll_width}}px">
                 <view class="item {{item.style}}" wx:for="{{all_member}}"  >
                     <image src="{{item.img_src}}" data-id="{{item.user_id}}" bindtap='tab_view' wx:if="{{index < pass_member_inf_data.length}}"></image>
                     <image src="{{item.img_src}}" wx:else></image>

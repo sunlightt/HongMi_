@@ -72,8 +72,6 @@ Page({
     },
     onLoad: function () {
 
-        
-
         // 获取完整的年月日 时分秒，以及默认显示的数组
         var obj1 = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear);
         var obj2 = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear);
@@ -143,7 +141,6 @@ Page({
         })
     },
     formsbumit: function (e) {
-
         
         var that = this;
 
@@ -163,6 +160,7 @@ Page({
         var month2 = withData(Number(that.data.dateTime2[1]) + 1);
         var day2 = withData(Number(that.data.dateTime2[2]) + 1);
         var hour2 = withData(that.data.dateTime2[3]);
+        
 
         var dec = e.detail.value.act_msg;
         var lng = app.globalData.location.longitude;
@@ -210,7 +208,18 @@ Page({
         if (people_num==''){
 
             send_data.people_num=4;
-        } 
+
+		} else if (people_num<2){
+
+			wx.showToast({
+				title: '人数不应少于2人',
+				image: '/img/tip.png',
+				duration: 1200
+			});
+
+			return;
+
+		} 
         
        if (Number(get_unix_time(start_time)) >= Number(get_unix_time(end_time))){
 

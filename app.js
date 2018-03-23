@@ -54,13 +54,14 @@ App({
                                 }
 
                             }else{
-                                wx.getUserInfo({
-                                    success:function(res){
+                                // wx.getUserInfo({
+                                //     success:function(res){
 
-                                         console.log(res);
+                                //          console.log(res);
 
-                                    }
-                                })
+                                //     }
+                                // })
+								return;
                             }
                         }
                     })

@@ -48,8 +48,9 @@
                                     </view>
                                     <view class="item_msg">
                                         <text class="msg_tip">微信</text>
-                                        <view class="msg_inf" wx:if="{{item.is_type!=2 && is_member && item.wx_num!='暂无信息'}}">{{item.wx_num}}<text class="copy" wx:if="{{item.is_type!=2 && item.wx_num!='暂无信息'}}" data-text="{{item.wx_num}}" bindtap='copy'>复制</text></view>
-                                        <view class="msg_inf" wx:else>仅队员可见</view>
+                                        <!-- <view class="msg_inf" wx:if="{{item.is_type!=2 && is_member && item.wx_num!='暂无信息'}}">{{item.wx_num}}<text class="copy" wx:if="{{item.is_type!=2 && item.wx_num!='暂无信息'}}" data-text="{{item.wx_num}}" bindtap='copy'>复制</text></view> -->
+                                        <view class="msg_inf" wx:if="{{item.is_type!=2 && is_member}}">{{item.wx_num}}<text class="copy" wx:if="{{item.is_type!=2 && item.wx_num!='暂无信息'}}" data-text="{{item.wx_num}}" bindtap='copy'>复制</text></view>
+										<view class="msg_inf" wx:else>仅队员可见</view>
                                     </view>
                                     <view class="item_msg">
                                         <text class="msg_tip">手机</text>
@@ -75,7 +76,7 @@
     <!--队员队列  -->
     <view class="member_list">
         <scroll-view scroll-x style="width:100%;height:100rpx;" scroll-left="{{scroll_left}}">
-            <view class="head_list" style="width:{{scroll_width}}">
+            <view class="head_list" style="width:{{scroll_width}}px">
                 <view class="item {{item.style}}" wx:for="{{member_head_inf}}" data-id="{{item.user_id}}" bindtap='tab_view'>
                     <image src="{{item.head_img}}"></image>
                 </view>

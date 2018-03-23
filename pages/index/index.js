@@ -300,7 +300,16 @@ Page({
             }
         });
     },
-    onPullDownRefresh: function (e) {
+    tab_webview:function(e){
+
+        var src=e.currentTarget.dataset.src;
+
+        wx.navigateTo({
+            url: '/pages/webview/index?http_src=' + src,
+        })
+
+    },
+    onPullDownRefresh: function () {
         var that = this;
         wx.stopPullDownRefresh();
         that.setData({

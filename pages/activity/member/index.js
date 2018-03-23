@@ -40,8 +40,8 @@ Page({
         that.setData({
             act_id: option.id
         });
-
-        // 
+        
+		 
         if (option.invi_id) {
 
             that.setData({
@@ -66,6 +66,8 @@ Page({
 
         var member_head_inf = that.data.member_head_inf;
 
+		console.log('ceshi');
+
         wx.request({
             url: app.globalData.url + 'index.php?g=&m=api&a=activity_team_user_api',
             data: {
@@ -81,6 +83,8 @@ Page({
                     var len = res.data.data.top.length;
 
                     var top_data = res.data.data.top;
+
+					console.log(data);
 
 
                     for (var i = 0; i < top_data.length;i++){

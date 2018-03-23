@@ -16,7 +16,7 @@
         <swiper autoplay="true" interval="4000" duration="1000" circular="true" next-margin="30px" previous-margin="22px">
             <block wx:for="{{banner_arr}}">
                 <swiper-item>
-                    <image src="{{item.carousel_img}}" class="slide-image" mode="aspectFill" />
+                    <image src="{{item.carousel_img}}" class="slide-image" mode="aspectFill" data-src="{{item.carousel_url}}"  bindtap='tab_webview' />
                 </swiper-item>
             </block>
         </swiper>

@@ -175,7 +175,9 @@ Page({
 
         context.setFillStyle('#2A2A2A');
 
-        context.fillText(title, 96, 15);
+        // context.fillText(title, 96, 17);
+
+        context.fillText(title, 96, 19);
 
         // context.closePath();
 
@@ -208,7 +210,9 @@ Page({
 
         context.setFillStyle('#2A2A2A');
 
-        context.fillText('发布了一个组织活动：', 96, 81);
+        // context.fillText('发布了一个组织活动：', 85, 79);
+
+        context.fillText('发布了一个组队活动', 96, 77);
 
         // context.closePath();
 
@@ -243,7 +247,9 @@ Page({
 
         context.setFillStyle('#2A2A2A');
 
-        context.fillText(title, 15, 96);
+        // context.fillText(title, 15, 96);
+
+        context.fillText(title, 15, 93);
 
         // context.closePath();
 
@@ -324,7 +330,7 @@ Page({
 
         // context.beginPath();
 
-        context.setFontSize(20);
+        context.setFontSize(18);
 
         context.setTextAlign('left');
 
@@ -443,10 +449,12 @@ Page({
                 context.save();
                 context.beginPath();
 
-                context.arc(48, 48, 33, 0, 2 * Math.PI)
+                // context.arc(48, 48, 33, 0, 2 * Math.PI)
+
+                context.arc(48, 48, 28, 0, 2 * Math.PI)
                 context.fill();
                 context.clip()
-                context.drawImage(path, 15, 15, 66, 66);
+                context.drawImage(path, 20, 20, 56, 56);
 
                 context.closePath();
 

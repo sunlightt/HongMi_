@@ -165,6 +165,8 @@ Page({
             tab_style: tab_style,
             tab_index: e.currentTarget.dataset.index
         });
+
+		//
         if (e.currentTarget.dataset.index == 1 && publish_data_onoff) {
 
             publish_data_onoff = false;

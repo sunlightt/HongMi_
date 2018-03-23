@@ -102,6 +102,7 @@
     overflow: hidden;
 }
 .list .top .subtitle{
+	 height:40rpx;
      font:24rpx/40rpx '微软雅黑';
      color:#929292;
 } 
